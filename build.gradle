@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'me.champeau.jmh' version '0.7.2'
+}
+
+group = 'com.jinhyuk'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+jmh {
+    fork = 1
+    warmupIterations = 4
+    iterations = 4
+    // for async-profiler integration, make sure to adjust the path to your local setup
+    // Download async-profiler from: https://github.com/async-profiler/async-profiler/releases/tag/v4.3
+    // and specify the correct path to the libasyncProfiler.dylib file
+    // profilers = ['async:libPath={path_to_libasyncProfiler.dylib};output=flamegraph;dir=async-profiler-results', 'gc']
+
+    // only when we need to disable inlining for debugging
+    // jvmArgsAppend = [
+    //        "-XX:-Inline"
+    // ]
+}
+
+dependencies {
+    implementation("org.apache.hbase:hbase-common:2.6.4")
+    jmh 'org.openjdk.jmh:jmh-core:1.37'
+    jmh 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
