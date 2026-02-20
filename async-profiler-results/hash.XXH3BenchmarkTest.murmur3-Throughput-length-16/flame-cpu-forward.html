@@ -23,7 +23,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 400px}
+	#canvas {width: 100%; height: 432px}
 </style>
 </head>
 <body style='font: 12px Verdana, sans-serif'>
@@ -78,7 +78,7 @@
 	let level0 = 0, left0 = 0, width0 = 0;
 	let nav = [], navIndex, matchval;
 	let inverted = false;
-	const levels = Array(25);
+	const levels = Array(27);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -348,63 +348,61 @@
 
 const cpool = [
 'all',
-' ClassFileParser::ClassFileParser',
-'1verify_class_version',
-'!oncurrentGCThread::run',
+' Compilation::Compilation',
+'-build_hir',
+'-compile_java_method',
+'5method',
+'+Policy::call_event',
+'3event',
+'&eBroker::compiler_thread_loop',
+'/invoke_compiler_on_method',
+'\'r::compile_method',
+'"ncurrentGCThread::run',
 ' G1ServiceThread::run_service',
 '1wait_for_task',
-' InstanceKlass::check_valid_for_instantiation',
-' JNIHandleBlock::allocate_block',
-'!VM_DefineClassWithSource',
-'!avaThread::push_jni_handle_block',
-',thread_main_inner',
-'$_java_lang_ClassLoader_defineClass1',
-'!vmtiDeferredEvent::post',
-'%Export::post_dynamic_code_generated_internal',
-' KlassFactory::create_from_stream',
+'!raphBuilder::GraphBuilder',
+'.invoke',
+'/terate_all_blocks',
+'6bytecodes_for_block',
+' IR::IR',
+'"Scope::IRScope',
+'!nstanceKlass::find_method_index',
+'/uncached_lookup_method',
+'"terpreterRuntime::frequency_counter_overflow',
+'N_inner',
+' JavaThread::thread_main_inner',
+' LinkResolver::linktime_resolve_virtual_method',
+'M_or_null',
+'.resolve_method',
+'!oopPredicate::apply',
 ' Monitor::wait_without_safepoint_check',
 '\'DeflationThread::monitor_deflation_thread_entry',
-' PlatformMonitor::wait',
-' ServiceThread::service_thread_entry',
-'!ystemDictionary::resolve_class_from_stream',
+' PeriodicTask::real_time_tick',
+'!latformMonitor::wait',
 ' Thread::call_run',
-' Unsafe_AllocateInstance',
 ' WatcherThread::run',
 '/sleep',
-' __gettimeofday',
-'"psynch_cvwait',
+' __psynch_cvwait',
 '!pthread_start',
-' com/sun/management/internal/HotSpotThreadImpl.getTotalThreadAllocatedBytes',
-' hash/ByteArrayHashKey.get',
-'9AbsolutePos',
-'%MurmurHash3.hash',
+' ciBytecodeStream::get_method',
+'"Env::get_method_by_index_impl',
+'\'lookup_method',
+' hash/MurmurHash3.hash',
+'%RowBloomHashKey.length',
 '%XXH3BenchmarkTest.murmur3',
 '%jmh_generated/XXH3BenchmarkTest_murmur3_jmhTest.murmur3_Throughput',
 ']thrpt_jmhStub',
-' java/lang/ClassLoader.defineClass',
-'A1',
-'6loadClass',
-'*Thread.run',
+' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'KnewInvokeSpecial',
-'C.allocateInstance',
-'1Invokers$Holder.invokeExact_MT',
-'AlinkToTargetMethod',
-'1LambdaForm$DMH.0x000000700102c800.invokeInterface',
-'<MH.0x000000700102d400.invoke',
-'L31400.invoke',
+'1LambdaForm$MH.0x000000f001031400.invoke',
 'N800.invokeExact_MT',
-'*management/ManagementFactory$$Lambda.0x000000700107b768.apply',
-'GPlatformMBeanFinder.findFirst',
-'F.getGarbageCollectorMXBeans',
+'*management/ManagementFactory.getGarbageCollectorMXBeans',
 'JPlatformMXBeans',
-'Glambda$getPlatformMXBeans$3',
 '*reflect/Method.invoke',
-'%security/SecureClassLoader.defineClass',
-'%util/Collection.stream',
-'4s$EmptyList.spliterator',
-'*HashMap$ValueSpliterator.forEachRemaining',
+'%util/HashMap$HashMapSpliterator.estimateSize',
+'EgetFence',
+'*Spliterator.getExactSizeIfKnown',
 '*concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
@@ -413,149 +411,117 @@ const cpool = [
 'Bevaluate',
 'BwrapAndCopyInto',
 '1ReduceOps$ReduceOp.evaluateSequential',
-'3ferencePipeline$7$1.accept',
-'B.collect',
-'!dk/internal/loader/BuiltinClassLoader.defineClass',
-'GfindClassOnClassPathOrNull',
-'GloadClass',
-'POrNull',
-'4ClassLoaders$AppClassLoader.loadClass',
-'-misc/Unsafe.allocateInstance',
-'-reflect/DirectMethodHandleAccessor.invoke',
+'3ferencePipeline.collect',
+'!dk/internal/reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
-'!mm_GetTotalThreadAllocatedMemory',
-'!vm_define_class_common',
-' org/openjdk/jmh/profile/GCProfiler$VMSupport.getSnapshot',
-'B.afterIteration',
-'CbeforeIteration',
+' org/apache/hadoop/hbase/KeyValue.getKeyOffset',
+'DRowLength',
+'8util/Bytes.toShort',
+'$openjdk/jmh/profile/GCProfiler.beforeIteration',
 '0runner/BaseRunner.doSingle',
 'BrunBenchmark',
 'NsForked',
 '8enchmarkHandler$BenchmarkTask.call',
 'G.runIteration',
 'HstartProfilers',
-'JopProfilers',
 '7ForkedMain.main',
-'=Runner$1.accept',
-'C.run',
-'7link/BinaryLinkClient.pushResults',
-' sun/management/ThreadImpl.getTotalThreadAllocatedBytes',
-'QMemory',
+'=Runner.run',
 ' thread_native_entry',
 '\'start'
 ];
 unpack(cpool);
 
-n(3,4025)
-u(296,4000)
-u(304)
-u(480)
-u(488)
-u(472)
+n(3,4036)
+u(360,4004)
+u(368)
 u(464)
 u(472)
-u(672)
-u(672)
-u(424)
+u(456)
+u(448)
+u(456)
 u(592)
+u(592)
+u(416)
+u(520)
+u(528)
+u(392)
+u(384)
+f(376,15,1,4003)
+u(344)
+u(353)
+f(338,18,285,3718)
+f(322,19,227,3491)
+f(330,20,3047,444)
+f(546,21,117,327)
+u(538,138)
+n(554,189)
+u(554)
+f(616,1,189,1)
+u(624)
+u(584)
+u(568)
+u(576)
+u(576)
 u(600)
-u(376)
-u(368)
-u(312)
-u(256)
-u(265)
-f(250,18,207,3793)
-f(242,19,308,3485)
-f(226,20,2447,1038)
-f(234,21,761,277)
-f(704,1,277,4)
-u(720)
-u(664)
-u(648)
-u(656)
-u(656)
-u(680,3)
-u(688,1)
-u(640)
+u(608)
+u(560)
 u(400)
 u(408)
-u(392)
-u(344)
-u(320)
-u(328)
-u(584)
-u(172)
-u(52)
-f(696,8,1,2)
-u(632)
-u(400,1)
-u(408)
-u(536)
-u(504)
-u(520)
 u(512)
+u(488)
+u(504)
 u(496)
-u(456)
-u(528)
-u(384)
-u(416)
-u(446,1,0,1,0)
-u(448)
-f(624,10,1)
+u(480)
+u(440)
 u(424)
-u(592)
-u(600)
-u(336)
-u(360)
-u(352)
-u(216)
-u(736)
-u(744)
-u(611)
-f(712,7,1)
-u(728)
-u(294,1,0,1,0)
-u(582,1,0,1,0)
-u(562)
-u(574,1,0,1,0)
-u(558,1,0,1,0)
-u(544)
 u(432)
-u(272)
-u(281)
-u(91)
-u(67)
-u(620)
-u(156)
-u(116)
-u(12)
-u(20)
-f(763,1,1,21)
-u(211)
-u(756)
-u(164)
-u(28,3)
-u(36)
+u(172)
+u(180)
+u(52)
 u(44)
-u(124)
-u(140)
-u(203)
-f(84,5,3,5)
-u(132,4)
-u(124)
-u(140)
-u(203)
-f(148,6,4,1)
+u(220)
+f(643,1,1,31)
+u(291)
+u(636)
+u(260)
+u(84,2)
+u(92)
 u(100)
-u(108)
+u(228)
+u(252)
+u(283)
+f(188,5,2,6)
+u(60,1)
+u(68)
 u(76)
-u(60)
-f(180,5,1,13)
-u(188)
-u(124)
+u(12)
+u(36)
+u(28)
+u(20)
 u(140)
-u(195,2)
-n(203,11)
+u(148)
+u(108)
+u(124)
+u(132)
+u(116)
+u(300)
+u(308)
+u(316)
+u(204)
+u(196)
+u(212)
+u(164)
+u(156)
+f(236,6,1,5)
+u(228)
+u(252)
+u(283)
+f(268,5,5,23)
+u(244,1)
+n(276,22)
+u(228)
+u(252)
+u(283)
 
 search();
 </script></body></html>

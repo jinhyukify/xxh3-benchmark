@@ -104,8 +104,7 @@ public class XXH3 extends Hash {
     static final long DEFAULT_SECRET_BITFLIP_3 = (DEFAULT_SECRET_LONG_5 ^ DEFAULT_SECRET_LONG_6);
     static final long DEFAULT_SECRET_BITFLIP_4 = (DEFAULT_SECRET_LONG_7 ^ DEFAULT_SECRET_LONG_8);
 
-    @Override
-    public <T> int hash(HashKey<T> hashKey, int seed) {
+    public <T> long hash64(HashKey<T> hashKey, long seed) {
         int length = hashKey.length();
         long result64;
 
@@ -117,6 +116,12 @@ public class XXH3 extends Hash {
             result64 = hashLarge(hashKey, length, seed);
         }
 
+        return result64;
+    }
+
+    @Override
+    public <T> int hash(HashKey<T> hashKey, int seed) {
+        long result64 = hash64(hashKey, seed);
         return toLow32Int(result64);
     }
 
@@ -177,10 +182,31 @@ public class XXH3 extends Hash {
         return hi ^ lo;
     }
 
+    private static long multiplyHigh(long x, long y) {
+        long x1 = x >> 32;
+        long x2 = x & 0xFFFFFFFFL;
+        long y1 = y >> 32;
+        long y2 = y & 0xFFFFFFFFL;
+
+        long z2 = x2 * y2;
+        long t = x1 * y2 + (z2 >>> 32);
+        long z1 = t & 0xFFFFFFFFL;
+        long z0 = t >> 32;
+        z1 += x2 * y1;
+
+        return x1 * y1 + z0 + (z1 >> 32);
+    }
+
+    private static long mix(long a, long b) {
+        long x = a * b;
+        long y = Math.unsignedMultiplyHigh(a, b);
+        return x ^ y;
+    }
+
     private static <T> long mix16(HashKey<T> key, int keyOffset, long secretLow, long secretHigh, long seed) {
         long inputLow = readLong64LE(key, keyOffset);
         long inputHigh = readLong64LE(key, keyOffset + 8);
-        return mul128AndFold64(inputLow ^ (secretLow + seed), inputHigh ^ (secretHigh - seed));
+        return mix(inputLow ^ (secretLow + seed), inputHigh ^ (secretHigh - seed));
     }
 
     static int toLow32Int(long value) {
@@ -196,7 +222,7 @@ public class XXH3 extends Hash {
     }
 
     private static long readLong64LE(byte[] input, int offset) {
-        if (UnsafeAccess.LITTLE_ENDIAN) {
+        if (org.apache.hadoop.hbase.util.UnsafeAccess.LITTLE_ENDIAN) {
             return HBasePlatformDependent.getLong(input, offset + BYTE_ARRAY_BASE_OFFSET);
         }
         return Long.reverseBytes(HBasePlatformDependent.getLong(input, offset + BYTE_ARRAY_BASE_OFFSET));
@@ -326,7 +352,7 @@ public class XXH3 extends Hash {
     }
 
     @VisibleForTesting
-    <T> long hashMedium(HashKey<T> hashKey, int length, int seed) {
+    <T> long hashMedium(HashKey<T> hashKey, int length, long seed) {
         if (length > 128) {
             return hashLength129To240(hashKey, length, seed);
         } else {
@@ -528,13 +554,13 @@ public class XXH3 extends Hash {
 
         // final merge
         long result = length * PRIME64_1;
-        result += mul128AndFold64(acc0 ^ readLong64LE(secret, 11),
+        result += mix(acc0 ^ readLong64LE(secret, 11),
                                   acc1 ^ readLong64LE(secret, 11 + 8));
-        result += mul128AndFold64(acc2 ^ readLong64LE(secret, 11 + 16),
+        result += mix(acc2 ^ readLong64LE(secret, 11 + 16),
                                   acc3 ^ readLong64LE(secret, 11 + 16 + 8));
-        result += mul128AndFold64(acc4 ^ readLong64LE(secret, 11 + 32),
+        result += mix(acc4 ^ readLong64LE(secret, 11 + 32),
                                   acc5 ^ readLong64LE(secret, 11 + 32 + 8));
-        result += mul128AndFold64(acc6 ^ readLong64LE(secret, 11 + 48),
+        result += mix(acc6 ^ readLong64LE(secret, 11 + 48),
                                   acc7 ^ readLong64LE(secret, 11 + 48 + 8));
 
         return avalanche(result);

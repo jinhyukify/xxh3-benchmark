@@ -27,6 +27,8 @@ jmh {
 
 dependencies {
     implementation("org.apache.hbase:hbase-common:2.6.4")
+    implementation("net.openhft:zero-allocation-hashing:0.27ea1")
+    implementation("com.dynatrace.hash4j:hash4j:0.29.0")
     jmh 'org.openjdk.jmh:jmh-core:1.37'
     jmh 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
     testImplementation platform('org.junit:junit-bom:5.10.0')
