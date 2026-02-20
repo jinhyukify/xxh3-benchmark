@@ -348,18 +348,22 @@
 
 const cpool = [
 'all',
-' ConcurrentGCThread::run',
-' G1ServiceThread::run_service',
-'1wait_for_task',
+' Compilation::Compilation',
+'-compile_method',
+'&eBroker::compiler_thread_loop',
+'/invoke_compiler_on_method',
+'\'r::compile_method',
 ' JavaThread::thread_main_inner',
 ' Monitor::wait_without_safepoint_check',
-'\'DeflationThread::monitor_deflation_thread_entry',
 ' PlatformMonitor::wait',
 ' Thread::call_run',
+' VMThread::run',
+'*wait_for_operation',
 ' WatcherThread::run',
 '/sleep',
 ' __psynch_cvwait',
 '!pthread_start',
+' ciEnv::register_method',
 ' hash/RowBloomHashKey.length',
 '%XXH3.hash64',
 '.Length4To8',
@@ -371,9 +375,11 @@ const cpool = [
 ' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$MH.0x000000a001031400.invoke',
+'1LambdaForm$MH.0x000000d801031400.invoke',
 'N800.invokeExact_MT',
-'*management/ManagementFactory$PlatformMBeanFinder.findFirst',
+'*management/ManagementFactory$PlatformMBeanFinder$$Lambda.0x000000d80107b518.test',
+'Z.findFirst',
+'[lambda$findFirst$0',
 'F.getGarbageCollectorMXBeans',
 'JPlatformMXBeans',
 '*reflect/Method.invoke',
@@ -387,10 +393,14 @@ const cpool = [
 'Bevaluate',
 'BwrapAndCopyInto',
 '1FindOps$FindOp.evaluateSequential',
-'1ReferencePipeline.findFirst',
+'1ReferencePipeline$2$1.accept',
+'B.findFirst',
 'DorEachWithCancel',
 '!dk/internal/reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
+' nmethod::finalize_relocations',
+')new_nmethod',
+'*method',
 ' org/apache/hadoop/hbase/KeyValue.getKeyOffset',
 'DRowLength',
 '8util/Bytes.toShort',
@@ -403,81 +413,86 @@ const cpool = [
 'HstartProfilers',
 '7ForkedMain.main',
 '=Runner.run',
-'!s::javaTimeNanos',
 ' thread_native_entry',
 '\'start'
 ];
 unpack(cpool);
 
-n(3,4020)
-u(168,4003)
-u(176)
+n(3,4011)
+u(200,4001)
+u(208)
+u(312)
+u(320)
+u(304)
+u(296)
+u(304)
+u(488)
+u(488)
+u(280)
+u(392)
+u(400)
+u(232)
+u(224)
+u(216)
+u(184)
+u(193)
+f(178,18,1661,2340)
+f(146,19,525,1815)
+f(138,20,252,1498)
+f(442,21,422,1076)
+f(434,22,2,542)
+n(450,532)
+u(450)
+f(162,20,532,65)
+f(154,21,19,46)
+f(170,22,16,30)
+f(512,1,30,1)
+u(520)
+u(480)
+u(464)
+u(472)
+u(472)
+u(496)
+u(504)
+u(456)
 u(264)
 u(272)
-u(256)
 u(248)
-u(256)
-u(408)
-u(408)
-u(232)
-u(336)
-u(344)
-u(200)
-u(192)
-u(184)
-u(152)
-u(161)
-f(146,18,1646,2357)
-f(114,19,573,1784)
-f(106,20,289,1418)
-f(362,21,443,975)
-f(354,22,3,466)
-n(370,506)
-u(370)
-f(130,20,506,77)
-f(122,21,17,60)
-f(138,22,19,41)
-f(432,1,41,1)
-u(440)
-u(400)
-u(384)
-u(392)
-u(392)
-u(416)
-u(424)
 u(376)
-u(216)
-u(224)
-u(208)
-u(320)
-u(296)
-u(312)
-u(304)
-u(280)
-u(288)
+u(344)
+u(360)
+u(352)
 u(328)
+u(336)
+u(384)
+u(288)
+u(368)
 u(240)
-f(467,1,1,16)
-u(99)
-u(460)
-u(68)
-u(12,1)
-u(20)
+u(256)
+f(539,1,1,9)
+u(123)
+u(532)
+u(76)
+u(52,1)
 u(28)
+u(36)
 u(44)
+u(12)
+u(20)
+u(132)
+u(420)
+u(428)
+u(412)
+f(84,5,1,2)
+u(92)
 u(60)
-u(91)
-f(36,5,1,5)
-u(52)
-u(44,4)
+u(68)
+u(115)
+f(100,5,2,6)
+u(108)
 u(60)
-u(91)
-f(452,7,4,1)
-f(76,5,1,10)
-u(84)
-u(44)
-u(60)
-u(91)
+u(68)
+u(115)
 
 search();
 </script></body></html>

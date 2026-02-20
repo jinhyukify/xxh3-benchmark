@@ -63,6 +63,11 @@ public class XXH3BenchmarkTest {
     }
 
     @Benchmark
+    public long xxh3_hash4j_byteAccess() {
+        return Hashing.xxh3_64().hashBytesToLong(key, 0, key.length(), HashKeyByteAccess.INSTANCE);
+    }
+
+    @Benchmark
     public long jenkins() {
         return jenkinsHash.hash(key, 0);
     }

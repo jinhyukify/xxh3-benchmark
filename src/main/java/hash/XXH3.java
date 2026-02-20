@@ -197,9 +197,13 @@ public class XXH3 extends Hash {
         return x1 * y1 + z0 + (z1 >> 32);
     }
 
+    private static long unsignedMultiplyHigh(long a, long b) {
+        return Math.multiplyHigh(a, b) + ((a >> 63) & b) + ((b >> 63) & a);
+    }
+
     private static long mix(long a, long b) {
         long x = a * b;
-        long y = Math.unsignedMultiplyHigh(a, b);
+        long y = unsignedMultiplyHigh(a, b);
         return x ^ y;
     }
 

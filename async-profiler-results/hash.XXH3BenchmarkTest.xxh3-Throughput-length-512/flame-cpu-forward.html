@@ -348,23 +348,33 @@
 
 const cpool = [
 'all',
-' ConcurrentGCThread::run',
-' G1ServiceThread::run_service',
-'1wait_for_task',
+' Compilation::Compilation',
+'-compile_java_method',
+'5method',
+'-emit_lir',
+'+Policy::event',
+'&eBroker::compiler_thread_loop',
+'/invoke_compiler_on_method',
+'\'Queue::get',
+'\'r::compile_method',
+' InterpreterRuntime::frequency_counter_overflow',
+'N_inner',
 ' JavaThread::thread_main_inner',
-' Monitor::wait_without_safepoint_check',
-'\'DeflationThread::monitor_deflation_thread_entry',
-' PlatformMonitor::wait',
+' LinearScan::do_linear_scan',
+',resolve_collect_mappings',
+'4data_flow',
+',split_child_at_op_id',
+' Monitor::wait',
+'-_without_safepoint_check',
+' PerfLongVariant::sample',
+'#iodicTask::real_time_tick',
+'!latformMonitor::wait',
+' ServiceThread::service_thread_entry',
 ' Thread::call_run',
-' VMThread::run',
-'*wait_for_operation',
 ' WatcherThread::run',
 '/sleep',
-' __gettimeofday',
-'"psynch_cvwait',
+' __psynch_cvwait',
 '!pthread_start',
-' clock_gettime',
-' gettimeofday',
 ' hash/LittleEndianBytes$ConverterHolder$UnsafeConverter.toLongLE',
 '6.getRowAsLongLE',
 '7toLongLE',
@@ -382,14 +392,19 @@ const cpool = [
 ' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$MH.0x0000007001031400.invoke',
+'1LambdaForm$MH.0x000000d001031400.invoke',
 'N800.invokeExact_MT',
-'*management/ManagementFactory$PlatformMBeanFinder.findFirst',
+'*management/ManagementFactory$PlatformMBeanFinder$$Lambda.0x000000d00107b518.test',
+'Z.findFirst',
+'[lambda$findFirst$0',
 'F.getGarbageCollectorMXBeans',
 'JPlatformMXBeans',
 '*reflect/Method.invoke',
-'%util/HashMap$HashMapSpliterator.getFence',
-'2ValueSpliterator.tryAdvance',
+'%util/Collections$UnmodifiableCollection.contains',
+'*HashMap$ValueSpliterator.tryAdvance',
+'1.containsKey',
+'2getNode',
+'.Set.contains',
 '*concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
@@ -399,11 +414,13 @@ const cpool = [
 'Bevaluate',
 'BwrapAndCopyInto',
 '1FindOps$FindOp.evaluateSequential',
-'1ReferencePipeline.findFirst',
+'=Sink.cancellationRequested',
+'1ReferencePipeline$2$1.accept',
+'B.findFirst',
 'DorEachWithCancel',
+'1Sink$ChainedReference.cancellationRequested',
 '!dk/internal/reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
-' mach_absolute_time',
 ' org/apache/hadoop/hbase/KeyValue.getKeyOffset',
 'DRowArray',
 'GLength',
@@ -426,98 +443,111 @@ const cpool = [
 ];
 unpack(cpool);
 
-n(3,4046)
-u(256,4003)
-u(264)
-u(360)
-u(368)
-u(352)
+n(3,4011)
+u(336,4001)
 u(344)
-u(352)
-u(544)
-u(544)
-u(320)
-u(432)
-u(440)
-u(288)
-u(280)
-u(272)
-u(240)
-u(249)
-f(234,18,22,3981)
-f(202,19,13,3968)
-f(178,20,6,58)
-f(474,21,18,40)
-u(458,21)
-n(506,19)
-u(506)
-f(209,20,19,3904)
-f(194,21,2892,33)
-n(218,8)
-n(226,971)
-f(170,22,28,772)
-f(154,23,35,737)
-u(162,695)
-u(146)
-u(186)
-u(490)
-u(498)
-u(586)
-f(466,24,695,18)
-n(482,24)
-f(490,22,24,171)
-u(498)
-u(586)
-f(568,1,171,1)
-u(576)
-u(536)
-u(520)
-u(528)
-u(528)
-u(552)
-u(560)
-u(512)
-u(304)
-u(312)
-u(296)
+u(480)
+u(488)
+u(472)
+u(464)
+u(472)
+u(680)
+u(680)
 u(416)
-u(392)
-u(408)
+u(576)
+u(584)
+u(368)
+u(360)
+u(352)
+u(320)
+u(329)
+f(314,18,17,3984)
+f(282,19,14,3970)
+f(258,20,7,66)
+f(610,21,24,42)
+u(594,31)
+n(642,11)
+u(642)
+f(289,20,11,3897)
+f(274,21,2901,38)
+n(298,7)
+n(306,951)
+f(250,22,23,804)
+f(234,23,47,757)
+u(242,705)
+u(226)
+u(266)
+f(626,27,11,694)
+u(634)
+u(722)
+f(602,24,694,29)
+n(618,23)
+f(626,22,23,124)
+u(634)
+u(722)
+f(704,1,124,2)
+u(712)
+u(672)
+u(656)
+u(664)
+u(664)
+u(688)
+u(696)
+u(648)
 u(400)
-u(376)
+u(408)
 u(384)
+u(552)
+u(512)
+u(528)
+u(520)
+u(496)
+u(504)
+u(560)
+u(432,1)
+u(544)
+u(376)
+u(392)
 u(424)
-u(336)
-u(328)
-f(603,1,1,42)
-u(123)
-u(596)
-u(68)
-u(12,1)
-u(20)
-u(28)
-u(44)
-u(60)
-u(115)
-f(36,5,1)
-u(52)
-u(44)
-u(60)
-u(131)
-u(139)
-u(451)
-f(76,5,1,2)
+u(456)
+u(440)
+u(454,1,0,1,0)
+f(568,20,1)
+u(536)
 u(84)
+u(92)
 u(44)
-u(60)
-u(115)
-f(92,5,2,38)
-u(100)
-u(44,36)
-u(60)
-u(107,2)
-n(115,34)
-f(451,7,34,2)
+f(739,1,1,8)
+u(219)
+u(732)
+u(188)
+u(100,3)
+u(52,2)
+u(60,1)
+u(76)
+u(12)
+u(28)
+u(20)
+u(36)
+u(108)
+u(124)
+u(116)
+u(132)
+f(68,7,1)
+u(140)
+u(172)
+u(211)
+f(180,6,1)
+u(148)
+u(172)
+u(211)
+f(196,5,1,5)
+u(164,1)
+u(156)
+f(204,6,1,4)
+u(148)
+u(172)
+u(211)
 
 search();
 </script></body></html>

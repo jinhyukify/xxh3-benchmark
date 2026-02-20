@@ -348,24 +348,12 @@
 
 const cpool = [
 'all',
-' CompilationPolicy::event',
-'&eBroker::compile_method',
-'=_base',
-'0reate_compile_task',
-'"ncurrentGCThread::run',
-' G1ServiceTask::schedule',
-'*hread::run_service',
-'5task',
-' InterpreterRuntime::frequency_counter_overflow',
-'N_inner',
-' JVM_NanoTime',
-'!avaThread::thread_main_inner',
+' ConcurrentGCThread::run',
+' G1ServiceThread::run_service',
+'1wait_for_task',
 ' Monitor::wait_without_safepoint_check',
-'\'DeflationThread::monitor_deflation_thread_entry',
 ' PlatformMonitor::wait',
 ' Thread::call_run',
-' VMThread::run',
-'*wait_for_operation',
 ' WatcherThread::run',
 '/sleep',
 ' __gettimeofday',
@@ -377,25 +365,26 @@ const cpool = [
 '%XXH3BenchmarkTest.xxh3_ZAH',
 '%jmh_generated/XXH3BenchmarkTest_xxh3_ZAH_jmhTest.xxh3_ZAH_Throughput',
 '_thrpt_jmhStub',
-' java/lang/System.nanoTime',
-'*Thread.run',
+' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'KnewInvokeSpecial',
-'C.allocateInstance',
-'1Invokers$Holder.linkToTargetMethod',
-'1LambdaForm$MH.0x0000007801031400.invoke',
+'1Invokers$Holder.invokeExact_MT',
+'1LambdaForm$MH.0x000000d001031400.invoke',
 'N800.invokeExact_MT',
-'*management/ManagementFactory.getGarbageCollectorMXBeans',
+'*management/ManagementFactory$PlatformMBeanFinder.findFirst',
+'F.getGarbageCollectorMXBeans',
 'JPlatformMXBeans',
 '*reflect/Method.invoke',
-'%util/concurrent/ExecutorCompletionService.poll',
-'=s$RunnableAdapter.call',
+'%util/Optional.of',
+'*concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
-'5LinkedBlockingQueue.poll',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
-'5locks/AbstractQueuedSynchronizer$ConditionObject.awaitNanos',
+'*stream/AbstractPipeline.evaluate',
+'1FindOps$FindOp.evaluateSequential',
+'=Sink$OfRef.get',
+'1ReferencePipeline.filter',
+'EndFirst',
 '!dk/internal/reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 ' net/openhft/hashing/Access.i64',
@@ -409,13 +398,16 @@ const cpool = [
 ' org/apache/hadoop/hbase/KeyValue.getKeyOffset',
 'DRowLength',
 '8util/Bytes.toShort',
-'$openjdk/jmh/profile/GCProfiler.beforeIteration',
+'$openjdk/jmh/profile/GCProfiler$VMSupport.getSnapshot',
+'B.afterIteration',
+'CbeforeIteration',
 '0runner/BaseRunner.doSingle',
 'BrunBenchmark',
 'NsForked',
 '8enchmarkHandler$BenchmarkTask.call',
 'G.runIteration',
 'HstartProfilers',
+'JopProfilers',
 '7ForkedMain.main',
 '=Runner.run',
 ' thread_native_entry',
@@ -423,91 +415,85 @@ const cpool = [
 ];
 unpack(cpool);
 
-n(3,4049)
-u(248,4002)
+n(3,4007)
+u(144,4000)
+u(152)
+u(248)
 u(256)
-u(368)
-u(376)
-u(352)
-u(344)
-u(352)
-u(528)
-u(528)
-u(328)
-u(392)
-u(400)
+u(240)
+u(232)
+u(240)
+u(456)
+u(456)
+u(216)
 u(304)
+u(312)
+u(184)
+u(176)
+u(160)
+u(128)
+u(137)
+f(122,18,24,3976)
+f(114,19,18,48)
+f(394,20,16,32)
+u(386,31)
+n(402,1)
+u(402)
+f(346,19,1,3910)
+u(378)
+f(353,21,3,3907)
+f(362,22,3460,66)
+n(370,381)
+f(322,23,38,74)
+u(98)
+f(98,25,48,26)
+u(106)
+f(330,23,26,269)
+u(338)
+f(488,1,269,3)
+u(496)
+u(448)
+u(432)
+u(440)
+u(440)
+u(464)
+u(472,1)
+u(424)
+u(200)
+u(208)
+u(192)
 u(296)
 u(264)
-u(224)
-u(233)
-f(218,18,25,3977)
-f(210,19,8,56)
-f(482,20,25,31)
-u(474,30)
-n(490,1)
-u(490)
-f(434,19,1,3913)
-u(466)
-f(441,21,3,3910)
-f(450,22,3512,58)
-n(458,340)
-f(410,23,36,56)
-u(194)
-f(194,25,37,19)
-u(202)
-f(418,23,19,248)
-u(426)
-f(552,1,248,2)
-u(560)
-u(520)
-u(504)
-u(512)
-u(512)
-u(536)
-u(336,1)
-u(360)
-u(384)
-u(241)
-u(91)
-f(544,8,1)
-u(496)
-u(312)
-u(320)
-u(288)
 u(272)
 u(280)
-u(76)
-u(84)
-u(12)
-u(20)
+u(280)
+u(224)
+f(480,8,1,2)
+u(416)
+u(200,1)
+u(208)
+u(192)
+u(288)
+f(408,10,1)
+u(216)
+u(304)
+u(312)
+u(168)
+f(515,1,1,4)
+u(91)
+u(508)
+u(52)
+u(12,1)
 u(20)
 u(28)
 u(36)
-f(579,1,1,45)
-u(187)
-u(572)
-u(132)
-u(44,1)
-u(60)
+u(44)
+u(75)
+f(60,5,1,3)
 u(68)
-u(52)
-f(100,5,1,4)
-u(116)
-u(108)
-u(124)
-f(179,9,1,3)
-f(140,5,3,4)
-u(148)
-u(108)
-u(124)
-f(179,9,1,3)
-f(156,5,3,36)
-u(164)
-u(108)
-u(124)
-u(171,1)
-n(179,35)
+u(36)
+u(44)
+u(83)
 
 search();
 </script></body></html>

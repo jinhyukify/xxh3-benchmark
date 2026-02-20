@@ -23,7 +23,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 512px}
+	#canvas {width: 100%; height: 464px}
 </style>
 </head>
 <body style='font: 12px Verdana, sans-serif'>
@@ -78,7 +78,7 @@
 	let level0 = 0, left0 = 0, width0 = 0;
 	let nav = [], navIndex, matchval;
 	let inverted = false;
-	const levels = Array(32);
+	const levels = Array(29);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -348,29 +348,30 @@
 
 const cpool = [
 'all',
-' AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<286822ull, G1BarrierSet>, (AccessInternal::BarrierType)3, 286822ull>::oop_access_barrier',
-' ConcurrentGCThread::run',
-' G1PeriodicGCTask::execute',
-'"ServiceThread::run_service',
+' Compilation::Compilation',
+'-compile_java_method',
+'5method',
+'-emit_lir',
+'&eBroker::compiler_thread_loop',
+'/invoke_compiler_on_method',
+'\'r::compile_method',
+'"ncurrentGCThread::run',
+' G1ServiceThread::run_service',
 '1wait_for_task',
+' IntervalWalker::walk_to',
 ' JavaThread::thread_main_inner',
+' LinearScan::allocate_registers',
+',do_linear_scan',
+'*Walker::activate_current',
+'3lloc_free_reg',
 ' Monitor::wait_without_safepoint_check',
-'\'DeflationThread::monitor_deflation_thread_entry',
-' PerfLongVariant::sample',
-'#iodicTask::real_time_tick',
-'!latformMonitor::wait',
-' StatSamplerTask::task',
+' PlatformMonitor::wait',
 ' Thread::call_run',
-' Unsafe_Park',
-' VMThread::run',
-'*wait_for_operation',
 ' WatcherThread::run',
 '/sleep',
 ' __gettimeofday',
 '"psynch_cvwait',
-'!pthread_cond_wait',
-')start',
-' cerror_nocancel',
+'!pthread_start',
 ' hash/LittleEndianBytes$ConverterHolder$UnsafeConverter.toLongLE',
 '6.getRowAsLongLE',
 '7toLongLE',
@@ -389,146 +390,152 @@ const cpool = [
 ' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$MH.0x000000f801031400.invoke',
+'1LambdaForm$MH.0x000000e001031400.invoke',
 'N800.invokeExact_MT',
-'*management/ManagementFactory.getGarbageCollectorMXBeans',
+'*management/ManagementFactory$PlatformMBeanFinder$$Lambda.0x000000e00107b518.test',
+'Z.findFirst',
+'[lambda$findFirst$0',
+'F.getGarbageCollectorMXBeans',
 'JPlatformMXBeans',
-'*ref/ReferenceQueue.await',
-'=remove',
-'C0',
-'-lect/Method.invoke',
-'%util/concurrent/Executors$RunnableAdapter.call',
+'*reflect/Method.invoke',
+'%util/Collections$UnmodifiableCollection.contains',
+'*HashMap$ValueSpliterator.tryAdvance',
+'.Set.contains',
+'*concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
-'5locks/AbstractQueuedSynchronizer$ConditionObject.await',
-';LockSupport.parkNanos',
-'*stream/ReferencePipeline.collect',
-'$_lang_Thread::set_thread_status',
-'!dk/internal/misc/InnocuousThread.run',
-'2Unsafe.park',
-'-ref/CleanerImpl.run',
-'0lect/DirectMethodHandleAccessor.invoke',
+'*stream/AbstractPipeline.copyInto',
+'JWithCancel',
+'Bevaluate',
+'BwrapAndCopyInto',
+'1FindOps$FindOp.evaluateSequential',
+'1ReferencePipeline$2$1.accept',
+'B.findFirst',
+'DorEachWithCancel',
+'!dk/internal/reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
-' mach_absolute_time',
 ' org/apache/hadoop/hbase/KeyValue.getKeyOffset',
 'DRowLength',
-'8unsafe/HBasePlatformDependent.getLong',
-'DUnsafeInternal.getLong',
-'9til/Bytes.toShort',
-'$openjdk/jmh/profile/GCProfiler.beforeIteration',
+'8util/Bytes.toShort',
+'$openjdk/jmh/profile/GCProfiler.afterIteration',
+'CbeforeIteration',
 '0runner/BaseRunner.doSingle',
 'BrunBenchmark',
 'NsForked',
 '8enchmarkHandler$BenchmarkTask.call',
 'G.runIteration',
 'HstartProfilers',
+'JopProfilers',
 '7ForkedMain.main',
 '=Runner.run',
-'!s::elapsed_counter',
-' sun/misc/Unsafe.getLong',
 ' thread_native_entry',
 '\'start'
 ];
 unpack(cpool);
 
-n(3,4051)
-u(312,4002)
-u(320)
-u(416)
-u(424)
-u(408)
-u(400)
-u(408)
-u(584)
-u(584)
-u(392)
-u(488)
-u(496)
-u(344)
-u(336)
+n(3,4010)
+u(320,3999)
 u(328)
-u(296)
-u(305)
-f(290,18,59,3943)
-f(250,19,41,3902)
-f(226,20,15,161)
-f(522,21,33,128)
-u(514,62)
-n(546,66)
-u(546)
-f(266,20,66,3726)
-f(257,21,2,3724)
-f(242,22,937,261)
-n(274,2526)
-f(282,23,2267,259)
-f(218,24,28,231)
-f(202,25,61,170)
-u(210)
-u(194)
-u(234)
-u(530)
-u(538)
-u(634)
-f(464,1,170,1)
-u(312)
-u(320)
-u(480)
-u(376)
-u(384)
-u(368)
+u(448)
+u(456)
+u(440)
 u(432)
 u(440)
-u(472)
-u(116)
-u(460)
-u(12)
-f(608,1,1)
-u(616)
-u(576)
-u(560)
-u(568)
-u(568)
-u(592)
-u(600)
-u(552)
+u(608)
+u(608)
+u(400)
+u(528)
+u(536)
 u(352)
+u(344)
+u(336)
+u(304)
+u(313)
+f(298,18,48,3951)
+f(258,19,43,3908)
+f(234,20,24,141)
+f(554,21,39,102)
+u(546,65)
+n(562,37)
+u(562)
+f(274,20,37,3743)
+u(265)
+f(250,22,1224,262)
+n(282,2257)
+f(290,23,2072,185)
+f(226,24,28,157)
+f(210,25,38,119)
+u(218)
+u(202)
+u(242)
+f(640,1,119,2)
+u(648)
+u(600)
+u(584)
+u(592)
+u(592)
+u(616)
+u(624,1)
+u(576)
+u(384)
+u(392)
+u(368)
+u(512)
+u(480)
+u(496)
+u(488)
+u(464)
+u(472)
+u(520)
+u(416)
+f(632,8,1)
+u(568)
+u(384)
+u(392)
+u(368)
+u(512)
+u(480)
+u(496)
+u(488)
+u(464)
+u(472)
+u(520)
+u(416)
+u(504)
 u(360)
-u(448)
-f(651,1,1,47)
-u(179)
-u(644)
-u(108)
-u(20,3)
-u(36)
-u(28,1)
-n(44,2)
-u(60)
-u(92)
-u(163)
-f(52,5,2,3)
-u(68)
-u(60)
-u(92)
-u(163)
-f(124,5,3,2)
-u(132)
-u(60)
-u(92)
-u(163)
-f(140,5,2,39)
-u(84,1)
-u(100)
+u(376)
+u(408)
+u(424)
+f(667,1,1,9)
+u(195)
+u(660)
+u(156)
+u(68,2)
 u(76)
-u(628)
-u(507)
-f(148,6,1,38)
+u(84)
+u(140)
+u(148)
+u(187)
+f(100,5,2,1)
+u(44)
+u(52)
 u(60)
-f(92,8,1,37)
-u(155,1)
-n(163,34)
-n(171,2)
-f(187,10,1,1)
+u(12)
+u(28)
+u(20)
+u(36)
+u(116)
+u(108)
+u(92)
+u(124)
+u(132)
+f(164,5,1,6)
+u(172)
+u(140)
+u(148)
+u(179,1)
+n(187,5)
 
 search();
 </script></body></html>

@@ -23,7 +23,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 448px}
+	#canvas {width: 100%; height: 656px}
 </style>
 </head>
 <body style='font: 12px Verdana, sans-serif'>
@@ -78,7 +78,7 @@
 	let level0 = 0, left0 = 0, width0 = 0;
 	let nav = [], navIndex, matchval;
 	let inverted = false;
-	const levels = Array(28);
+	const levels = Array(41);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -348,22 +348,20 @@
 
 const cpool = [
 'all',
-' AdapterHandlerLibrary::create_native_wrapper',
-'!ssembler::operand_valid_for_logical_immediate',
-' Compilation::Compilation',
+' CodeBuffer::copy_code_to',
+'"mpilation::Compilation',
 '-build_hir',
 '-compile_java_method',
 '5method',
 '+Policy::event',
 '&eBroker::compile_method',
+'=_base',
 '6r_thread_loop',
+'0reate_compile_task',
 '/invoke_compiler_on_method',
+'\'Queue::get',
 '\'r::compile_method',
-'"ncurrentGCThread::run',
-' G1ServiceThread::run_service',
-'1wait_for_task',
-'!raphBuilder::GraphBuilder',
-'.access_field',
+' GraphBuilder::GraphBuilder',
 '.iterate_all_blocks',
 '6bytecodes_for_block',
 ' IR::IR',
@@ -371,28 +369,19 @@ const cpool = [
 '!nterpreterRuntime::frequency_counter_overflow',
 'N_inner',
 ' JavaThread::thread_main_inner',
-' MacroAssembler::mov_immediate64',
-'!onitor::wait_without_safepoint_check',
+' Monitor::wait',
+'-_without_safepoint_check',
 '\'DeflationThread::monitor_deflation_thread_entry',
-' PerfLongVariant::sample',
-'#iodicTask::real_time_tick',
-'!latformMonitor::wait',
-' SharedRuntime::generate_native_wrapper',
-'!tatSamplerTask::task',
+' PlatformMonitor::wait',
+' Return::visit',
 ' Thread::call_run',
-' VMThread::run',
-'*wait_for_operation',
 ' WatcherThread::run',
 '/sleep',
-' __psynch_cvwait',
+' __psynch_cvbroad',
+'+wait',
 '!pthread_start',
-' bsearch',
-' ciBytecodeStream::get_field',
-'"Env::get_field_by_index',
-'9_impl',
-'"Field::ciField',
-')initialize_from',
-' encoding_for_logical_immediate',
+' ciEnv::register_method',
+' fwd_copy_again',
 ' hash/AccessFactory$1.getLong',
 '%LittleEndianBytes.getRowAsLongLE',
 '%RowBloomHashKey.getLongLE',
@@ -400,29 +389,41 @@ const cpool = [
 '%XXH3BenchmarkTest.xxh3_ZAH',
 '%jmh_generated/XXH3BenchmarkTest_xxh3_ZAH_jmhTest.xxh3_ZAH_Throughput',
 '_thrpt_jmhStub',
-' java/lang/Class.cast',
-'*Thread.run',
+' java/io/ObjectOutputStream$BlockDataOutputStream.writeInt',
+':.defaultWriteFields',
+';writeArray',
+'@Handle',
+'@Object',
+'F0',
+'ArdinaryObject',
+'@SerialData',
+'%lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'KnewInvokeSpecial',
-'C.allocateInstance',
-'1Invokers$Holder.linkToTargetMethod',
-'1LambdaForm$MH.0x000000a001031400.invoke',
+'1LambdaForm$MH.0x000000f801031400.invoke',
 'N800.invokeExact_MT',
-'1VarHandleGuards.guard_LII_Z',
-':Ints$FieldInstanceReadWrite.compareAndSet',
-'*management/ManagementFactory.getGarbageCollectorMXBeans',
+'*management/ManagementFactory$PlatformMBeanFinder$$Lambda.0x000000f80107b518.test',
+'Z.findFirst',
+'[lambda$findFirst$0',
+'F.getGarbageCollectorMXBeans',
 'JPlatformMXBeans',
 '*reflect/Method.invoke',
-'%util/concurrent/Executors$RunnableAdapter.call',
+'%util/HashMap$ValueSpliterator.tryAdvance',
+'*concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
-'@set',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
-'!dk/internal/misc/Unsafe.allocateInstance',
-'-reflect/DirectMethodHandleAccessor.invoke',
+'*stream/AbstractPipeline.copyInto',
+'JWithCancel',
+'Bevaluate',
+'BwrapAndCopyInto',
+'1FindOps$FindOp.evaluateSequential',
+'1ReferencePipeline$2$1.accept',
+'B.findFirst',
+'DorEachWithCancel',
+'!dk/internal/reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
-' mach_absolute_time',
+'$proxy1/$Proxy0.iterationResult',
 ' net/openhft/hashing/Access.i64',
 '4Maths.unsignedLongMulXorFold',
 'PImp',
@@ -430,10 +431,11 @@ const cpool = [
 '8.XXH3_64bits_internal',
 '>avalanche',
 '9access$500',
+'!method::new_nmethod',
+'*method',
 ' org/apache/hadoop/hbase/KeyValue.getKeyOffset',
 'DRowArray',
 'GLength',
-'8util/Bytes.toShort',
 '$openjdk/jmh/profile/GCProfiler.beforeIteration',
 '0runner/BaseRunner.doSingle',
 'BrunBenchmark',
@@ -443,127 +445,141 @@ const cpool = [
 'HstartProfilers',
 '7ForkedMain.main',
 '=Runner.run',
-'!s::elapsed_counter',
+'7link/BinaryLinkClient$$Lambda.0x000000f801001c50.invoke',
+'L.lambda$new$0',
+'MpushFrame',
 ' thread_native_entry',
 '\'start'
 ];
 unpack(cpool);
 
-n(3,4051)
-u(432,4002)
-u(440)
-u(560)
-u(568)
-u(544)
-u(536)
-u(544)
-u(552,1)
-u(496)
-u(504)
-u(430,1,0,1,0)
-f(728,8,1,4001)
-u(728)
-u(528)
-u(584)
-u(592)
-u(488)
-u(480)
-u(448)
+n(3,4011)
+u(400,4000)
 u(408)
-u(417)
-f(402,18,179,3822)
-f(394,19,115,350)
-f(682,20,109,241)
-u(666,238)
-n(690,3)
-u(690)
-f(634,19,3,3357)
-u(658)
-f(641,21,12,3345)
-f(610,22,2414,575)
-f(370,23,152,423)
-u(370)
-f(386,25,210,213)
-f(378,26,1,212)
-u(674)
-f(618,22,212,112)
-u(626)
-f(650,22,112,244)
-f(752,1,244,1)
-u(760)
-u(720)
-u(704)
-u(712)
-u(712)
-u(736)
-u(744)
-u(696)
 u(512)
 u(520)
-u(472)
-u(456)
-u(464)
-u(576)
-u(172)
-u(180)
-u(60)
-u(68)
-u(68)
-u(12)
-u(244)
-u(196)
-u(20)
-u(364)
-u(315)
-f(787,1,1,48)
-u(307)
-u(780)
-u(260)
-u(100,3)
-u(108)
-u(116)
-f(204,8,1,2)
-u(236)
-u(299)
-f(188,5,2,5)
-u(76,1)
-u(84)
-u(92)
-u(28)
-u(52)
-u(44)
-u(36)
+u(504)
+u(496)
+u(504)
+u(744)
+u(744)
+u(480)
+u(592)
+u(600)
+u(432)
+u(424)
+u(416)
+u(320)
+u(329)
+f(314,18,170,3830)
+f(306,19,90,376)
+f(706,20,129,247)
+u(690)
+f(642,19,247,3364)
+u(666)
+f(649,21,25,3339)
+f(618,22,2375,608)
+f(282,23,156,452)
+u(282)
+f(298,25,255,197)
+u(290)
+u(698)
+f(626,22,197,94)
+u(634)
+f(658,22,94,262)
+f(768,1,262,2)
+u(776)
+u(736)
+u(720)
+u(728)
+u(728)
+u(608,1)
+u(784)
+u(792)
+u(800)
+u(368)
+u(376)
+u(384)
+u(392)
+u(344)
+u(376)
+u(352)
+u(376)
+u(384)
+u(392)
+u(344)
+u(376)
+u(384)
+u(392)
+u(344)
+u(376)
+u(384)
+u(392)
+u(344)
+u(376)
+u(360)
+u(336)
 u(156)
 u(164)
-u(124)
+u(52)
+u(60)
+u(60)
+u(68)
+u(84)
+u(243)
+f(752,7,1)
+u(760)
+u(712)
+u(464)
+u(472)
+u(448)
+u(576)
+u(544)
+u(560)
+u(552)
+u(528)
+u(536)
+u(584)
+u(488)
+u(568)
+u(440)
+u(456)
+f(819,1,1,9)
+u(259)
+u(812)
+u(220)
+u(172,4)
+u(76,3)
+u(92,2)
+u(108)
+u(20)
+u(44)
+u(36,1)
+u(28)
 u(140)
 u(148)
+u(116)
+u(124)
 u(132)
-u(324)
-u(332)
-u(340)
-u(348)
-u(356)
-f(212,6,1,4)
+u(212)
+f(268,11,1)
+u(676)
+u(684)
+u(12)
+u(275)
+f(100,7,1)
+u(180)
 u(204)
-u(236)
-u(299)
-f(268,5,4,1)
-u(276)
+u(251)
+f(196,6,1)
+u(188)
 u(204)
+u(251)
+f(228,5,1,5)
 u(236)
-u(299)
-f(284,5,1,39)
-u(228,1)
-u(252)
-u(220)
-u(772)
-u(603)
-f(252,6,1)
-n(292,37)
+u(188)
 u(204)
-u(236)
-u(299)
+u(251)
 
 search();
 </script></body></html>

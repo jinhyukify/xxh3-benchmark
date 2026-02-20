@@ -88,7 +88,6 @@ public class XXH3GoldenTest {
         assertEquals(c.expected, actual, "len=" + c.len + " seed=" + c.seed);
     }
 
-
     @ParameterizedTest
     @MethodSource("vectors")
     void testXxh3Hash4j(Case c) {
@@ -106,6 +105,26 @@ public class XXH3GoldenTest {
             hasher = hash4jHasher;
         }
         long actual = hasher.hashToLong(rowKey, HashKeyFunnel.INSTANCE);
+        assertEquals(c.expected, actual, "len=" + c.len + " seed=" + c.seed);
+    }
+
+    @ParameterizedTest
+    @MethodSource("vectors")
+    void testXxh3Hash4jByteAccess(Case c) {
+        byte[] buf = new byte[c.len];
+        for (int i = 0; i < c.len; i++) {
+            buf[i] = (byte) i;
+        }
+        KeyValue kv = new KeyValue(buf, Bytes.toBytes("f"), Bytes.toBytes("q"), HConstants.EMPTY_BYTE_ARRAY);
+        RowBloomHashKey rowKey = new RowBloomHashKey(kv);
+
+        Hasher64 hasher;
+        if (c.seed == 31L) {
+            hasher = hash4jHasher31;
+        } else {
+            hasher = hash4jHasher;
+        }
+        long actual = hasher.hashBytesToLong(rowKey, 0, rowKey.length(), HashKeyByteAccess.INSTANCE);
         assertEquals(c.expected, actual, "len=" + c.len + " seed=" + c.seed);
     }
 }

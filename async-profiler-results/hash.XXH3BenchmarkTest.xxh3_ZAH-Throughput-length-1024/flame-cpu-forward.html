@@ -23,7 +23,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 736px}
+	#canvas {width: 100%; height: 528px}
 </style>
 </head>
 <body style='font: 12px Verdana, sans-serif'>
@@ -78,7 +78,7 @@
 	let level0 = 0, left0 = 0, width0 = 0;
 	let nav = [], navIndex, matchval;
 	let inverted = false;
-	const levels = Array(46);
+	const levels = Array(33);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -348,39 +348,46 @@
 
 const cpool = [
 'all',
-' ChunkPool::clean',
-'!lassFileParser::create_instance_klass',
-'!ompilationPolicy::event',
-'&eBroker::compile_method',
-'=_base',
-'0reate_compile_task',
-'"ncurrentGCThread::run',
-' G1ServiceThread::run_service',
-'1wait_for_task',
-' InstanceKlass::allocate_instance_klass',
-'"terpreterRuntime::frequency_counter_overflow',
-'N_inner',
+' ClassFileParser::ClassFileParser',
+'1parse_constant_pool',
+'D_entries',
+'7stream',
+'!ompilation::Compilation',
+'-compile_method',
+'&eBroker::compiler_thread_loop',
+'/invoke_compiler_on_method',
+'\'r::compile_method',
+' G1CodeRootSet::contains',
+'$llectedHeap::register_nmethod',
+'!enericWaitBarrier::wait',
+' HeapRegionRemSet::add_code_root_locked',
 ' JVM_DefineClassWithSource',
 '!avaThread::thread_main_inner',
 '$_java_lang_ClassLoader_defineClass1',
 ' KlassFactory::create_from_stream',
 ' Monitor::wait_without_safepoint_check',
-'\'DeflationThread::monitor_deflation_thread_entry',
-' PerfLongVariant::sample',
-'#iodicTask::real_time_tick',
-'!latformMonitor::wait',
-' SystemDictionary::resolve_class_from_stream',
+' PlatformMonitor::wait',
+' SafepointBlob',
+')Mechanism::process',
+')Synchronize::begin',
+'7lock',
+'6handle_polling_page_exception',
+'6synchronize_threads',
+'!ymbolTable::do_lookup',
+'-lookup_only',
+'"stemDictionary::resolve_class_from_stream',
 ' Thread::call_run',
+'&SafepointState::handle_polling_page_exception',
+' VMThread::inner_execute',
+'*run',
+'*wait_for_operation',
 ' WatcherThread::run',
 '/sleep',
 ' __gettimeofday',
 '"psynch_cvwait',
-'!platform_memset',
-'"thread_cond_updateval',
-'.wait',
-')mutex_droplock',
-')start',
-' free_small',
+'"semwait_signal',
+'!pthread_start',
+' ciEnv::register_method',
 ' hash/AccessFactory$1.getLong',
 '%LittleEndianBytes$ConverterHolder$UnsafeConverter.toLongLE',
 '6.getRowAsLongLE',
@@ -391,45 +398,35 @@ const cpool = [
 '%XXH3BenchmarkTest.xxh3_ZAH',
 '%jmh_generated/XXH3BenchmarkTest_xxh3_ZAH_jmhTest.xxh3_ZAH_Throughput',
 '_thrpt_jmhStub',
-' java/io/ClassCache$1.computeValue',
-'2.get',
-'(ObjectOutputStream.writeObject',
-'F0',
-'.StreamClass$2.run',
-':Caches$1.computeValue',
-'9.<init>',
-':getSerializableConstructor',
-':lookup',
-'%lang/ClassLoader.defineClass1',
-'/Value.get',
-'8FromBackup',
-'<HashMap',
-'*System$2.defineClass',
+' java/lang/ClassLoader.defineClass',
+'A1',
+'6loadClass',
 '*Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'KnewInvokeSpecial',
-'C.allocateInstance',
-'1Invokers$Holder.linkToTargetMethod',
-'1LambdaForm$MH.0x000000d801031400.invoke',
+'1LambdaForm$MH.0x000000a001031400.invoke',
 'N800.invokeExact_MT',
-'*management/ManagementFactory.getGarbageCollectorMXBeans',
+'*management/ManagementFactory$PlatformMBeanFinder.findFirst',
+'F.getGarbageCollectorMXBeans',
 'JPlatformMXBeans',
 '*reflect/Method.invoke',
-'%security/AccessController.doPrivileged',
-'?executePrivileged',
-'%util/concurrent/Executors$RunnableAdapter.call',
+'%security/SecureClassLoader.defineClass',
+'%util/Optional.of',
+'*concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
-'!dk/internal/reflect/ClassDefiner.defineClass',
-'5DirectMethodHandleAccessor.invoke',
+'*stream/AbstractPipeline.evaluate',
+'1FindOps$FindOp.evaluateSequential',
+'=Sink$OfRef.get',
+'1ReferencePipeline.findFirst',
+'!dk/internal/loader/BuiltinClassLoader.defineClass',
+'GfindClassOnClassPathOrNull',
+'GloadClass',
+'POrNull',
+'4ClassLoaders$AppClassLoader.loadClass',
+'-reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
-'5MethodAccessorGenerator$1.run',
-'L.generate',
-'USerializationConstructor',
-'5ReflectionFactory.generateConstructor',
-'GnewConstructorForSerialization',
 '!vm_define_class_common',
 ' net/openhft/hashing/Access.i64',
 '4Maths.unsignedLongMulXorFold',
@@ -439,6 +436,9 @@ const cpool = [
 '>avalanche',
 '>mix2Accs',
 '9access$500',
+'!method::new_nmethod',
+'*method',
+')oops_do',
 ' org/apache/hadoop/hbase/KeyValue.getKeyOffset',
 'DRowArray',
 'GLength',
@@ -455,58 +455,65 @@ const cpool = [
 '7ForkedMain.main',
 '=Runner$1.accept',
 'C.run',
-'7link/BinaryLinkClient.pushFrame',
-'QResults',
-' small_free_list_remove_ptr_no_clear',
+'7link/BinaryLinkClient.pushResults',
+'!s::naked_short_nanosleep',
+' semaphore_wait_trap',
 '!un/misc/Unsafe.getLong',
 ' thread_native_entry',
 '\'start'
 ];
 unpack(cpool);
 
-n(3,4049)
-u(464,4003)
-u(472)
-u(584)
-u(592)
-u(576)
-u(568)
-u(576)
-u(816)
-u(816)
+n(3,4010)
+u(432,4000)
+u(440)
+u(536)
 u(544)
-u(608)
-u(616)
+u(528)
 u(520)
-u(512)
-u(480)
-u(336)
-u(345)
-f(330,18,4,3999)
-f(314,19,7,29)
-f(754,20,11,18)
+u(528)
+u(816)
+u(816)
+u(496)
+u(624)
+u(632)
+u(464)
+u(456)
+u(448)
+u(392)
+u(401)
+f(386,18,13,3987)
+f(370,19,8,21)
+f(754,20,9,12)
 u(738)
-f(698,19,18,3963)
-u(730)
-u(705)
-f(674,22,2762,972)
-f(274,23,28,944)
-f(274,24,39,905)
-f(306,25,7,898)
-f(290,26,5,893)
-u(298,850)
-u(282)
-u(322)
+f(674,19,12,3958)
+u(706)
+u(681)
+f(163,22,2832,1)
+u(196)
+u(244)
+u(172)
+u(188)
+u(100)
+u(883)
+f(650,22,1,917)
+f(330,23,27,890)
+f(330,24,29,861)
+f(362,25,13,848)
+f(346,26,9,839)
+u(354,785)
+u(338)
+u(378)
 u(770)
 u(778)
 u(890)
-f(746,27,850,20)
-n(762,23)
-f(714,22,23,14)
-n(722,215)
-f(682,23,61,154)
-u(690)
-f(840,1,154,2)
+f(746,27,785,21)
+n(762,33)
+f(690,22,33,16)
+n(698,192)
+f(658,23,65,127)
+u(666)
+f(840,1,127,2)
 u(856)
 u(808)
 u(792)
@@ -515,86 +522,69 @@ u(800)
 u(824,1)
 u(832)
 u(784)
-u(528)
-u(536)
-u(504)
+u(480)
 u(488)
-u(496)
-u(92)
-u(100)
-u(28)
-u(36)
-u(36)
-u(44)
-u(52)
+u(472)
+u(576)
+u(552)
+u(560)
+u(568)
+u(568)
+u(512)
 f(848,7,1)
-u(872)
 u(864)
-u(368)
-u(376)
-u(416)
-u(366,1,0,1,0)
-u(432)
-u(440)
-u(448)
-u(352)
-u(352)
-u(392)
-u(392)
-u(400)
-u(552)
-u(560)
-u(384)
-u(384)
+u(430,1,0,1,0)
+u(622,1,0,1,0)
+u(602)
+u(614,1,0,1,0)
+u(598,1,0,1,0)
+u(584)
+u(504)
 u(408)
-u(656)
-u(648)
-u(640)
-u(632)
-u(552)
-u(560)
-u(624)
-u(624)
-u(600)
-u(456)
-u(425)
-u(123)
-u(107)
-u(668)
-u(180)
-u(132)
+u(417)
+u(131)
+u(115)
+u(644)
+u(228)
+u(140)
+u(12)
+u(36)
 u(20)
-u(84)
-u(227)
-f(907,1,1,44)
-u(259)
+u(28)
+u(220)
+u(212)
+f(907,1,1,8)
+u(315)
 u(900)
-u(188)
-u(60,4)
+u(236)
+u(124,1)
+u(60)
 u(68)
 u(76)
-u(140)
-u(172)
-u(219,3)
-n(235,1)
-f(116,5,1,7)
+u(44)
+u(52)
+u(324)
+u(716)
+u(724)
+u(92)
+u(732)
+u(108)
+u(84)
+f(260,5,1,2)
+u(252,1)
+u(180)
+u(204)
+u(876)
+u(307)
+f(268,6,1)
 u(148)
-u(140)
-u(172)
-u(219,6)
-n(243,1)
-u(251)
-f(196,5,1,33)
-u(164,2)
-u(12,1)
-u(267)
-u(883)
-f(156,7,1)
-f(204,6,1,31)
-f(140,7,1,30)
-u(172)
-u(211,2)
-n(219,28)
+u(156)
+u(291)
+f(276,5,1,5)
+u(284)
+u(148)
+u(156)
+u(299)
 
 search();
 </script></body></html>

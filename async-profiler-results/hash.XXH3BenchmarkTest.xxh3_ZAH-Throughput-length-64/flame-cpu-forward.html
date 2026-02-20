@@ -348,25 +348,12 @@
 
 const cpool = [
 'all',
-' CompilationPolicy::event',
-'&eBroker::compile_method',
-'=_base',
-'0reate_compile_task',
-'"ncurrentGCThread::run',
-' G1ServiceThread::run_service',
-'1wait_for_task',
-' InterpreterRuntime::frequency_counter_overflow',
-'N_inner',
 ' JavaThread::thread_main_inner',
 ' Monitor::wait_without_safepoint_check',
 '\'DeflationThread::monitor_deflation_thread_entry',
-'!utex::lock_without_safepoint_check',
-' ObjectSynchronizer::is_async_deflation_needed',
-' PeriodicTask::real_time_tick',
-'!latformMonitor::wait',
+' PlatformMonitor::wait',
+' StatSamplerTask::task',
 ' Thread::call_run',
-' VMThread::run',
-'*wait_for_operation',
 ' WatcherThread::run',
 '/sleep',
 ' __gettimeofday',
@@ -382,18 +369,26 @@ const cpool = [
 ' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'KnewInvokeSpecial',
-'C.allocateInstance',
-'1Invokers$Holder.linkToTargetMethod',
-'1LambdaForm$MH.0x000000b801031400.invoke',
+'1LambdaForm$MH.0x0000007001031400.invoke',
 'N800.invokeExact_MT',
-'*management/ManagementFactory.getGarbageCollectorMXBeans',
+'*management/ManagementFactory$PlatformMBeanFinder.findFirst',
+'F.getGarbageCollectorMXBeans',
 'JPlatformMXBeans',
 '*reflect/Method.invoke',
-'%util/concurrent/Executors$RunnableAdapter.call',
+'%util/HashMap$ValueSpliterator.tryAdvance',
+'*concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
+'*stream/AbstractPipeline.copyInto',
+'JWithCancel',
+'Bevaluate',
+'BwrapAndCopyInto',
+'1FindOps$FindOp.evaluateSequential',
+'=Sink.accept',
+'1ReferencePipeline$2$1.accept',
+'B.findFirst',
+'DorEachWithCancel',
 '!dk/internal/reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 ' net/openhft/hashing/Access.i64',
@@ -417,100 +412,86 @@ const cpool = [
 'HstartProfilers',
 '7ForkedMain.main',
 '=Runner.run',
-' pthread_mutex_lock',
 ' thread_native_entry',
 '\'start'
 ];
 unpack(cpool);
 
-n(3,4057)
-u(256,4002)
-u(264)
-u(360)
-u(368)
-u(352)
-u(344)
-u(352)
-u(520)
-u(520)
+n(3,4008)
+u(152,4001)
+u(160)
+u(248)
+u(256)
+u(240)
+u(232)
+u(240)
+u(480)
+u(480)
+u(216)
 u(336)
-u(376)
-u(384)
+u(344)
+u(184)
+u(176)
+u(168)
+u(136)
+u(145)
+f(130,18,103,3898)
+f(122,19,58,273)
+f(434,20,109,164)
+f(418,21,11,151)
+n(442,2)
+u(442)
+f(378,19,2,3567)
+u(410)
+f(385,21,7,3560)
+f(394,22,1937,44)
+n(402,1579)
+f(354,23,492,347)
+f(98,24,78,269)
+u(98)
+f(114,26,137,132)
+u(106)
+u(426)
+f(362,23,132,740)
+u(370)
+f(504,1,740,1)
+u(512)
+u(472)
+u(456)
+u(464)
+u(464)
+u(488)
+u(496)
+u(448)
+u(200)
+u(208)
+u(192)
+u(320)
+u(280)
+u(296)
+u(288)
+u(264)
+u(272)
+u(328)
+u(224)
 u(312)
 u(304)
-u(272)
-u(240)
-u(249)
-f(234,18,104,3898)
-f(226,19,76,285)
-f(474,20,117,168)
-f(458,21,5,161)
-n(482,2)
-u(482)
-f(418,19,2,3537)
-u(450)
-f(425,21,9,3528)
-f(434,22,1941,37)
-n(442,1550)
-f(394,23,473,341)
-f(202,24,80,261)
-u(202)
-f(218,26,147,114)
-u(210)
-u(466)
-f(402,23,114,736)
-u(410)
-f(544,1,736,1)
-u(552)
-u(512)
-u(496)
-u(504)
-u(504)
-u(528)
-u(536)
-u(488)
-u(320)
-u(328)
-u(296)
-u(280)
-u(288)
-u(68)
-u(76)
-u(12)
-u(20)
-u(20)
-u(28)
-u(36)
-f(579,1,1,54)
-u(195)
-u(572)
-u(140)
-u(44,1)
+f(531,1,1,6)
+u(91)
+u(524)
 u(52)
-u(60)
-u(92)
-u(132)
-u(187)
-f(84,5,1,7)
-u(100,6)
-u(92)
-u(132)
-u(187)
-f(116,6,6,1)
-f(148,5,1,2)
-u(156)
-f(92,7,1,1)
-u(132)
-u(187)
-f(164,5,1,44)
-u(108,1)
-n(124)
-u(563)
-f(172,6,1,42)
-u(92)
-u(132)
-u(179,6)
-n(187,36)
+u(12,1)
+u(28)
+u(20)
+u(36)
+u(83)
+f(60,5,1,5)
+u(44,1)
+n(68,4)
+u(20)
+u(36)
+u(75,1)
+n(83,3)
 
 search();
 </script></body></html>
